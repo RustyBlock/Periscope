@@ -1,0 +1,13 @@
+﻿{
+  "_doc": "Defines array of rigs to collect the data from.",
+  "Rigs": [
+    {
+      "_doc1": "Name of the rig. Can be anything. This value will be helpful for filtering when analizing the data.",
+      "Name": "Rig1",
+      "_doc2":  "Ip address of the machine where Claymore miner is running. Use 127.0.0.1 if running data collector on the same machine.",
+      "Ip": "127.0.0.1",
+      "_doc3":  "Claymore miner management port. Default value is 3333",
+      "Port": 3333
+    }
+  ]
+}
