@@ -1,0 +1,6 @@
+﻿{
+  // Ethermine.org payout address.
+  // Specify 0x at the start to get stats without share details (short form),
+  // otherwise full list of shares will be returned and stats will be bulky
+  "PayoutAddress": ""
+}
