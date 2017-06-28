@@ -11,7 +11,6 @@ namespace CryptoHarbour.Periscope.RigDataCollector
     class Program
     {
         private static readonly string _pluginsPath = $"{Path.GetDirectoryName(typeof(Program).GetTypeInfo().Assembly.Location)}\\Plugins";
-        private static Timer _timer;
 
         static void Main(string[] args)
         {
@@ -40,11 +39,6 @@ namespace CryptoHarbour.Periscope.RigDataCollector
             }
 
             StartPulse(ctx, int.Parse(cfg["PulseIntervalSeconds"]));
-
-            while(true)
-            {
-                Console.ReadLine();
-            }
         }
 
         private static Assembly Default_Resolving(AssemblyLoadContext arg1, AssemblyName arg2)
@@ -88,15 +82,19 @@ namespace CryptoHarbour.Periscope.RigDataCollector
 
         internal static void StartPulse(Context ctx, int interval)
         {
-            _timer = new Timer((obj) => {
+            while (true)
+            {
                 try
                 {
                     ctx.TriggerPulse();
-                } catch(Exception ex)
+                }
+                catch (Exception ex)
                 {
                     ctx.Error.WriteLine($"Exception in pulse event: {ex.ToString()}");
                 }
-            }, null, 0, interval * 1000);
+
+                Thread.Sleep(interval * 1000);
+            }
         }
     }
 }
