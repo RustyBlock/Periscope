@@ -64,17 +64,10 @@ namespace CryptoHarbour.Periscope.AjaxCollector
 
             // read device information
             var parms = _web.FindElements(By.CssSelector("device-params>article"));
-            var res = new StringBuilder("\"Device\":{");
-            var first = true;
+            var res = new StringBuilder("\"Device\":{Name:\"").Append(_cfg["DeviceName"].Replace("\"", "\\\"")).Append("\"");
             foreach(var p in parms)
             {
-                if(!first)
-                {
-                    res.Append(",");
-                } else
-                {
-                    first = false;
-                }
+                res.Append(",");
                 var name = p.FindElement(By.CssSelector("div.indicators-name")).Text;
                 var value = p.FindElement(By.CssSelector("div.indicators-value")).Text;
                 res.Append($"\"{name}\":\"{value}\"");
